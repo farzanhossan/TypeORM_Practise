@@ -1,10 +1,9 @@
 import express from 'express';
 import { promises, resolve } from 'dns';
 import bodyParser from 'body-parser';
-
 import userRoutes from './routes/user';
-
 import morgan from 'morgan';
+import connection from './database/connection';
 
 class App{
     public app: express.Application;
@@ -12,6 +11,7 @@ class App{
 
     constructor(){
         this.app = express();
+        connection();
         this.app.use(morgan('dev'));
         this.app.use(bodyParser.urlencoded({extended : false}));
         this.app.use(bodyParser.json());

@@ -1,23 +1,21 @@
-const Sequelize = require('sequelize')
+import {createConnection} from "typeorm";
 
-const sequelize = new Sequelize('test', 'root', '',{
-    host: 'localhost',
-    dialect: 'mysql',
-    operationAliases: false,
-    dialectOptions: {
-      dateStrings: true,
-      typeCast: true,
-      timezone: "+06:00",
-    },
-    timezone: "+06:00",
-})
-sequelize
-  .authenticate()
-  .then(() => {
-    console.error('Database Connected');
-  })
-  .catch((err: any) => {
-    console.error('Unable to connect to the database:', err);
-  });
+const connection = () =>{
+    createConnection({
+    type: "mysql",
+    host: "localhost",
+    port: 3306,
+    username: "root",
+    password: "",
+    database: "TypeORM_Test",
+    entities: [
+        "src/entity/**/*.ts"
+    ],
+    synchronize: true,
+    logging: ["log",'query']
+}).then(connection => {
+    console.log('Database Connected');
+}).catch(error => console.log(error));
+}
 
-export default sequelize;
+export default connection;

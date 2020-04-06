@@ -15,13 +15,14 @@ class UserRouter{
 
     routes(){
         try {
-             this.router.get('/',this.userController.getUsers);
-             this.router.get('/belongsToMany',this.userController.belongsToMany);
-             this.router.get('/selfJoin',this.userController.selfJoin);
-             this.router.get('/hasMany',this.userController.hasMany);
-             this.router.get('/belongsTo',this.userController.belongsTo);
-             this.router.get('/hasOne',this.userController.hasOne);
+             this.router.get('/index',this.userController.index);
+             this.router.get('/getAll',this.userController.getUsers);
              this.router.post('/create',this.userController.createUsers);
+             this.router.put('/update/:id',this.userController.updateUsers);
+             this.router.delete('/delete/:id',this.userController.deleteUsers);
+             this.router.get('/oneToMany',this.userController.oneToMany);
+             this.router.get('/manyToMany',this.userController.manyToMany);
+
          } catch (error) {
             if (error) throw error;
         }
