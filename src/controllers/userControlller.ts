@@ -96,10 +96,10 @@ export class UserController {
   oneToMany = async (req: any, res: any, next: any) => {
     try {
       // //ManyToONe
-      // const result = await getRepository(User).find({ relations: ["country"] });
+      const result = await getRepository(User).find({ relations: ["country"] });
 
       //OneToMany
-      const result = await  getRepository(Country).find({relations: ["user"]});
+      // const result = await  getRepository(Country).find({relations: ["user"]});
       return res.status(200).json({
         message: "OneToMany Relations",
         Result: result
